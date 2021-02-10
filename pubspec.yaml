@@ -30,7 +30,8 @@ dependencies:
   flutter_icons: ^1.1.0
   convert: ^2.1.1
   http: ^0.12.2
-
+  keyboard_avoider: ^0.1.2
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

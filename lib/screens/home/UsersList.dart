@@ -1,15 +1,18 @@
-import 'dart:math';
+import "dart:math";
+import "dart:async";
+import "dart:convert";
+import "package:http/http.dart" as http;
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'dart:async';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 import 'package:signal/models/Models.dart';
+import 'package:signal/screens/inbox/Inbox.dart';
 
 class UsersList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SignalList(
-      title: "Signal",
+    return Container(
+      child: SignalList(),
     );
   }
 }
@@ -45,7 +48,7 @@ class _SignalListState extends State<SignalList> {
     Color getRandomColor() =>
         Colors.primaries[Random().nextInt(Colors.primaries.length)];
 
-    return new Container(
+    return Container(
       child: FutureBuilder(
         future: _getUsers(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -60,25 +63,21 @@ class _SignalListState extends State<SignalList> {
               itemCount: snapshot.data.length,
               itemBuilder: (BuildContext context, int index) {
                 return InkWell(
-                    onTap: () {
-                      print("tapped");
-                    },
-                    splashColor: getRandomColor(),
-                    child: Ink(
-                        child: ListTile(
-                      leading: IconButton(
-                          padding: EdgeInsets.all(5),
-                          icon: CircleAvatar(
-                            backgroundColor: getRandomColor(),
-                            child: Text(
-                              snapshot.data[index].name
-                                  .substring(0, 2)
-                                  .toUpperCase(),
-                              style: TextStyle(fontSize: 13),
-                            ),
-                          ),
-                          onPressed: () {},
-                          color: getRandomColor()),
+                  splashColor: getRandomColor(),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Inbox()),
+                    );
+                  },
+                  child: Ink(
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        backgroundColor: getRandomColor(),
+                        child: Text(snapshot.data[index].name
+                            .substring(0, 2)
+                            .toUpperCase()),
+                      ),
                       title: Text(snapshot.data[index].name),
                       subtitle: Text(
                         '${snapshot.data[index].name} is on Signal',
@@ -87,10 +86,12 @@ class _SignalListState extends State<SignalList> {
                       trailing: new Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          new Text("Jan 16"),
+                          new Text("Feb 4"),
                         ],
                       ),
-                    )));
+                    ),
+                  ),
+                );
               },
             );
           }

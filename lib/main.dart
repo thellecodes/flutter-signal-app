@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Flutter Signal App',
         theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -45,26 +45,28 @@ class MyApp extends StatelessWidget {
               ],
             ),
             body: UsersList(),
-            floatingActionButton:
-                Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-              FloatingActionButton(
-                child: Icon(
-                  Icons.photo,
-                  color: Colors.black87,
+            floatingActionButton: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                FloatingActionButton(
+                  child: Icon(
+                    Icons.photo,
+                    color: Colors.black87,
+                  ),
+                  onPressed: () {},
+                  heroTag: null,
+                  backgroundColor: Colors.white,
                 ),
-                onPressed: () {},
-                heroTag: null,
-                backgroundColor: Colors.white,
-              ),
-              SizedBox(
-                height: 12,
-              ),
-              FloatingActionButton(
-                child: Icon(Icons.edit),
-                onPressed: () => {},
-                heroTag: null,
-              )
-            ]),
+                SizedBox(
+                  height: 12,
+                ),
+                FloatingActionButton(
+                  child: Icon(Icons.edit),
+                  onPressed: () {},
+                  heroTag: null,
+                )
+              ],
+            ),
           ),
         ));
   }
